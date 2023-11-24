@@ -1,0 +1,30 @@
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:liquibase-changelog.xml
+  datasource:
+    url: jdbc:mysql://localhost:3306/tax_calculator?useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 12042003
+  security.jwt:
+    jwt-duration: 15m
+    default-issuer: 'hoangtien2k3'
+    public-key: ${PUBLIC_KEY}
+    private-key: ${PRIVATE_KEY}
+    no-authenticated-urls:
+      - /health
+      - /v3/api-docs/**
+      - /swagger-ui.html
+      - /swagger-ui/**
+      - /auth/**
+    no-filter-urls:
+      - /health
+      - /v3/api-docs
+      - /swagger-ui.html
+      - /swagger-ui
+      - /auth
+management:
+  endpoints.web:
+    base-path: ''
+    exposure.include: health
